@@ -1,0 +1,279 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+h1 {
+    color: #333;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#game-board {
+    display: grid;
+    /* Se definirá con JS según el tamaño de la ecuación */
+    gap: 5px;
+    margin-bottom: 20px;
+    /* Estilos para las celdas individuales se añadirán con JS */
+}
+
+/* Estilos de ejemplo para las celdas del tablero (se aplicarán dinámicamente) */
+.tile {
+    border: 2px solid #d3d6da; /* Borde más suave */
+    width: 60px; /* Ajustar tamaño */
+    height: 60px; /* Ajustar tamaño */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem; /* Fuente más grande */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1a1a1b;
+    background-color: #fff; /* Fondo blanco por defecto */
+    box-sizing: border-box; /* Incluir borde en el tamaño */
+    transition: transform 0.1s ease; /* Animación al teclear */
+}
+
+/* Animación al escribir en la celda */
+.tile.filled {
+    border-color: #878a8c;
+    transform: scale(1.05);
+}
+
+/* Estilos base para estado de revelación (antes de animar) */
+.tile.correct,
+.tile.present,
+.tile.absent {
+    color: white;
+    border-width: 0; /* Quitar borde al revelar */
+}
+
+/* Animación de Flip */
+@keyframes flip {
+    0% {
+        transform: rotateX(0);
+        background-color: #fff; /* Blanco inicial */
+        border-color: #878a8c;
+        color: #1a1a1b;
+    }
+    49% {
+        color: #1a1a1b;
+    }
+    50% {
+        transform: rotateX(90deg);
+        background-color: var(--tile-bg-color, #787c7e); /* Color destino a mitad */
+        color: white;
+    }
+    100% {
+        transform: rotateX(0);
+        background-color: var(--tile-bg-color, #787c7e); /* Color destino final */
+        border-width: 0;
+        color: white;
+    }
+}
+
+.tile.reveal {
+    animation: flip 0.6s ease forwards;
+}
+
+.tile.correct {
+    /* background-color: #6aaa64; Ya no se pone aquí, se usa variable */
+    --tile-bg-color: #6aaa64; /* Verde */
+}
+
+.tile.present {
+    /* background-color: #c9b458; */
+    --tile-bg-color: #c9b458; /* Amarillo */
+}
+
+.tile.absent {
+    /* background-color: #787c7e; */
+    --tile-bg-color: #787c7e; /* Gris */
+}
+
+#keyboard {
+    margin-bottom: 20px;
+    /* Estilos para el teclado */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+#keyboard button {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    height: 50px; /* Reducir un poco altura */
+    cursor: pointer;
+    background-color: #e1e3e6; /* Color teclado más claro */
+    color: #333;
+    flex-grow: 1;
+    text-transform: uppercase;
+    margin: 0 3px;
+    border-radius: 4px;
+    user-select: none;
+    min-width: 40px; /* Ancho mínimo para teclas */
+    display: flex; /* Para centrar contenido */
+    justify-content: center; /* Para centrar contenido */
+    align-items: center; /* Para centrar contenido */
+    font-size: 0.9em; /* Ajustar tamaño fuente */
+    transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+#keyboard button:active { /* Feedback al presionar */
+    background-color: #c0c3c7;
+    transform: scale(0.95);
+}
+
+#keyboard button:hover {
+    background-color: #b5b9bc;
+}
+
+#keyboard button.wide-key {
+    flex-grow: 1.5;
+}
+
+/* Clases para colores del teclado después de adivinar */
+#keyboard button.correct {
+    background-color: #6aaa64;
+    color: white;
+}
+
+#keyboard button.present {
+    background-color: #c9b458;
+    color: white;
+}
+
+#keyboard button.absent {
+    background-color: #787c7e;
+    color: white;
+}
+
+#monetization {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e9e9e9;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+}
+
+#adsense-block, #premium-banners {
+    border: 1px dashed #aaa;
+    padding: 15px;
+    width: 80%;
+    text-align: center;
+    background-color: #fff;
+}
+
+#donation-section {
+    text-align: center;
+}
+
+#donate-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#donate-button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    padding: 10px;
+    text-align: center;
+    color: #555;
+    width: 100%;
+    background-color: #ddd;
+}
+
+/* Animación de Shake (para fila inválida) */
+@keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+}
+
+.shake {
+    animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Animación de Bounce (para fila ganadora) */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.bounce .tile {
+    animation: bounce 0.8s ease-in-out forwards;
+    /* Aplicar delay a cada tile para efecto dominó */
+}
+
+#messages {
+    min-height: 30px; /* Espacio para mensajes */
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.message {
+    background-color: #888;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    display: inline-block; /* Para que no ocupe todo el ancho */
+}
+
+.message.show {
+    opacity: 1;
+}
+
+#game-modes {
+    margin-bottom: 15px;
+    text-align: center;
+} 

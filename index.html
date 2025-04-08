@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathle - Juego Matemático Diario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mathle</h1>
+        <p>Resuelve la ecuación matemática del día en 6 intentos.</p>
+    </header>
+
+    <div id="messages"></div>
+
+    <!-- Restauramos la selección de modo y añadimos "Diario" -->
+    <div id="game-modes">
+        <label>Modo:</label>
+        <select id="mode-select">
+            <!-- <option value="daily" selected>Diario</option> Eliminado -->
+            <option value="easy">Fácil</option>
+            <option value="medium" selected>Medio</option> <!-- Medio por defecto ahora -->
+            <option value="hard">Difícil</option>
+        </select>
+    </div>
+
+    <main>
+        <div id="game-board">
+            <!-- Las filas de intentos irán aquí (generadas por JS) -->
+        </div>
+
+        <div id="keyboard">
+            <!-- El teclado virtual o input irá aquí -->
+            <div class="keyboard-row">
+                <button data-key="1">1</button>
+                <button data-key="2">2</button>
+                <button data-key="3">3</button>
+                <button data-key="4">4</button>
+                <button data-key="5">5</button>
+                <button data-key="6">6</button>
+                <button data-key="7">7</button>
+                <button data-key="8">8</button>
+                <button data-key="9">9</button>
+                <button data-key="0">0</button>
+            </div>
+             <div class="keyboard-row">
+                <button data-key="+">+</button>
+                <button data-key="-">-</button>
+                <button data-key="*">*</button>
+                <button data-key="/">/</button>
+                <button data-key="=">=</button>
+            </div>
+            <div class="keyboard-row">
+                 <button data-key="ENTER" class="wide-key">Enter</button>
+                 <button data-key="BACKSPACE" class="wide-key">Borrar</button>
+            </div>
+        </div>
+    </main>
+
+    <aside id="monetization">
+        <div id="adsense-block">
+            <!-- Espacio para Anuncios de Google AdSense -->
+            <p>(Espacio para AdSense)</p>
+        </div>
+
+        <div id="premium-banners">
+            <!-- Espacio para banners premium -->
+            <p>(Espacio para Banners Premium)</p>
+        </div>
+
+        <div id="donation-section">
+            <button id="donate-button">Apoya Mathle (Donar)</button>
+            <!-- Mensaje publicitario ocasional podría ir aquí -->
+        </div>
+    </aside>
+
+    <footer>
+        <p>&copy; 2025 Mathle</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
